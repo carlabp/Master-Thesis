@@ -1,0 +1,57 @@
+---
+title: "Descriptive stats"
+author: "Carla Beatriz de Paulo"
+date: "2023-11-20"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. 
+
+```{r, include = T}
+library(tidyverse)
+library(PNSIBGE)
+
+```
+
+## Household descriptives
+
+Household distribution per gender
+
+```{r pressure, echo=FALSE}
+
+union_ds <- get_pns(year=2019, vars=c("C004","C006", "C014", "C011", "C017"), design=FALSE)
+
+df_head_household <- union_ds %>%
+  filter (C004 == "Pessoa responsável pelo domicílio") %>%
+  group_by(C006) %>%
+  
+
+
+
+
+
+```
+
+Household distribution per union status 
+
+```{r}
+
+```
+
+Distribution of union per type 
+
+```{r}
+
+```
+
+
+
+
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
