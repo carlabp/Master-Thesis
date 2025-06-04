@@ -101,9 +101,9 @@ women_with_children <- women_with_children %>%
 
 women_with_children <- women_with_children %>%
   mutate(emprego = case_when(
-    !is.na(VDE002) ~ VDE002, # When VDE002 is not NA, copy VDE002
-    is.na(VDE002) ~ VDE001,  # When VDE002 is NA, copy VDE001
-    TRUE ~ NA_character_     # Fallback in case of unexpected conditions
+    !is.na(VDE002) ~ VDE002, 
+    is.na(VDE002) ~ VDE001, 
+    TRUE ~ NA_character_     
   ))
 
 #employment dummy 
