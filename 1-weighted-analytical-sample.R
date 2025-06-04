@@ -40,7 +40,7 @@ women_with_children_w <- women_with_children_w %>%
   mutate(Settlement = factor(case_when(
     V0026 == "Urbano" ~ "Urban",
     V0026 == "Rural"  ~ "Rural",
-    TRUE ~ NA_character_  # Default case to handle other unexpected values
+    TRUE ~ NA_character_  
   ), levels = c("Urban", "Rural")))
 
 
@@ -49,14 +49,14 @@ women_with_children_w <- women_with_children_w %>%
   mutate(SRH_binary = case_when(
     J00101 == "Muito bom" | J00101 == "Bom" ~ 1,
     J00101 == "Regular" | J00101 == "Ruim" |  J00101 == "Muito ruim" ~ 0,
-    TRUE ~ NA_integer_ # Use NA_integer_ instead of NA_character_ for integer output
+    TRUE ~ NA_integer_ 
   ))
 
 women_with_children_w <- women_with_children_w %>% 
   mutate(SRH_factor = factor(case_when(
     J00101 == "Muito bom" | J00101 == "Bom" ~ "Good",
     J00101 == "Regular" | J00101 == "Ruim" |  J00101 == "Muito ruim" ~ "Bad",
-    TRUE ~ NA_character_ # Use NA_integer_ instead of NA_character_ for integer output
+    TRUE ~ NA_character_ 
   ), levels= c( "Good", "Bad")))
 
 women_with_children_w <- women_with_children_w %>%
@@ -83,7 +83,7 @@ women_with_children_w <- women_with_children_w %>%
   mutate(Employment = factor(case_when(
     emprego == "Pessoas Ocupadas" ~ "Employed",
     emprego == "Pessoas desocupadas" | emprego == "Pessoas fora da força de trabalho" ~ "Unemployed/Not Employed",
-    TRUE ~ NA_character_  # Correct to use NA_character_ for character output
+    TRUE ~ NA_character_  
   ), levels = c("Employed", "Unemployed/Not Employed")))
 
 women_with_children_w <- women_with_children_w %>%
@@ -136,10 +136,6 @@ states <- read_state(
 
 
 
-# Make sure the identifiers match between the shapefile and your data
-name_state$states <- as.character(name_state$states)  # Convert to character if necessary
-data$state <- as.character(data$state)  # Convert to character if necessary
-
 uf_data_2022 <- data.frame(
   name_state = c(
     "Rondônia", "Acre", "Amazonas", "Roraima", "Pará", 
@@ -160,27 +156,23 @@ uf_data_2022 <- data.frame(
 )
 
 
-
-# Merge the shapefile with your data
 brazil_map_data <- left_join(states, uf_data_2022, by = "name_state")
 
-# Plot the map
-library(ggplot2)
-library(sf)  # Ensure sf is loaded for geom_sf
+
 
 ggplot(brazil_map_data) +
   geom_sf(aes(fill = Percentage_2022), color = "white") +
-  scale_fill_gradient(low = "white", high = "#286D97FF", limits = c(10, 20)) +  # Adjust color to your preference
+  scale_fill_gradient(low = "white", high = "#286D97FF", limits = c(10, 20)) +  
   labs(fill = "Percentage (%)") +
   theme_minimal() +  # Starts with a minimal theme as a base
   theme(
-    panel.background = element_rect(fill = "white", colour = "white"),  # Set the panel background to white
-    panel.grid.major = element_blank(),  # Remove major grid lines
-    panel.grid.minor = element_blank(),  # Remove minor grid lines
-    axis.text.x = element_blank(),  # Optionally hide x axis text
-    axis.text.y = element_blank(),  # Optionally hide y axis text
-    axis.ticks = element_blank(),  # Optionally hide axis ticks
-    plot.background = element_rect(fill = "white", colour = "white")  # Ensure the plot background is also white
+    panel.background = element_rect(fill = "white", colour = "white"),  
+    panel.grid.major = element_blank(),  
+    panel.grid.minor = element_blank(), 
+    axis.text.x = element_blank(), 
+    axis.text.y = element_blank(),  
+    axis.ticks = element_blank(),  
+    plot.background = element_rect(fill = "white", colour = "white")  
   )
 
 
