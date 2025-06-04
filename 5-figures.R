@@ -316,11 +316,11 @@ ggplot(long_data, aes(x = Year, y = Percentage, color = Category, group = Catego
   ) +
   theme(
     plot.title = element_text(hjust = 0.5),
-    axis.text.x = element_text(hjust = 1, size = 14),  # Increase size here
-    axis.text.y = element_text(size = 16),  # Increase size here
-    legend.position = "bottom",  # Position the legend at the bottom
-    legend.title = element_blank(),  # Remove the legend title
-    legend.text = element_text(size = 16)  # Increase size of legend text if needed
+    axis.text.x = element_text(hjust = 1, size = 14), 
+    axis.text.y = element_text(size = 16), 
+    legend.position = "bottom", 
+    legend.title = element_blank(), 
+    legend.text = element_text(size = 16)  
   )
 
 
@@ -333,8 +333,8 @@ states <- read_state(
   showProgress = TRUE
 )
 
-name_state$states <- as.character(name_state$states)  # Convert to character if necessary
-data$state <- as.character(data$state)  # Convert to character if necessary
+name_state$states <- as.character(name_state$states) 
+data$state <- as.character(data$state) 
 
 uf_data_2022 <- data.frame(
   name_state = c(
@@ -361,16 +361,16 @@ brazil_map_data <- left_join(states, uf_data_2022, by = "name_state")
 # Plot the map
 ggplot(brazil_map_data) +
   geom_sf(aes(fill = Percentage_2022), color = "white") +
-  scale_fill_gradient(low = "white", high = "#286D97FF", limits = c(10, 20)) +  # Adjust color to your preference
+  scale_fill_gradient(low = "white", high = "#286D97FF", limits = c(10, 20)) + 
   labs(fill = "Percentage (%)") +
   theme_minimal() +  
   theme(
-    panel.background = element_rect(fill = "white", colour = "white"),  # Set the panel background to white
+    panel.background = element_rect(fill = "white", colour = "white"), 
     panel.grid.major = element_blank(),  # Remove major grid lines
     panel.grid.minor = element_blank(),  # Remove minor grid lines
     axis.text.x = element_blank(),  
     axis.text.y = element_blank(),  
     axis.ticks = element_blank(),  
-    plot.background = element_rect(fill = "white", colour = "white")  # Ensure the plot background is also white
+    plot.background = element_rect(fill = "white", colour = "white")  
   )
 
