@@ -57,12 +57,6 @@ families_w_children <- families_w_children %>%
   mutate(young_children = ifelse(any(young_child_indicator == 1), 1, 0))%>%
   ungroup()
 
-# While the data is still grouped by ID_DOMICILIO, this line adds another new column called young_children
-#to the data frame. For each group (household), if any row within the group has a young_child_indicator 
-#equal to 1 (meaning there's at least one child aged 3 or younger in the household), then young_children is
-#set to 1 for all rows in that group. If not, young_children is set to 0. This step effectively flags entire 
-#households that have young children
-
 #number of children 
 
 # Identify children based on the given criteria
